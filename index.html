@@ -1,0 +1,73 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">	
+<title>Ajax Puro</title>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">	
+</head>
+
+<body>
+	
+	
+	<div class="container">
+		<h2>Inserir Produto</h2>
+		<form>
+		<div class="row">
+			<div class="col-lg-4 col-sm-12">
+				<label>Nome:<input type="text" placeholder="nome do produto" name="nome" id="nome"></label>
+			</div>
+			<div class="col-lg-4 col-sm-12">
+				<label>URL Imagem:<input type="text" placeholder="url da imagem" name="url" id="url"></label>
+			</div>
+			<div class="col-lg-4 col-sm-12">
+				<label>Preço:<input type="text" placeholder="preço do produtos" name="preco" id="preco"></label>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-lg-6 col-sm-12">
+				<label>Descrição:<input type="text" placeholder="descricao" name="descricao" id="descricao"></label>
+			</div>
+			<div class="col-lg-6 col-sm-12">
+				<label>Categoria:
+				<select name="categoria" id="categoria">				
+					<option value="0">Selecione um item</option>
+					<option value="1">Eletrodomestico</option>
+					<option value="2">Informática</option>
+					<option value="3">DVD</option>
+					<option value="4">Livro</option>
+					<option value="5">Brinquedo</option>
+				</select>
+				</label>
+			</div>
+		</div>
+		<input type="reset" class="btn btn-danger" value="Limpar">
+		<input type="button" onClick="enviar();" class="btn btn-primary" value="Enviar">
+	</form>
+	<hr>
+		
+		<div class="row">
+			<h2>Listagem de Produto</h2>
+			<div class="col-12 pull-right" style="text-align: right;">
+				<label>Filtro:
+				<select name="filtro" id="filtro">				
+					<option value="0">Todos</option>
+				</select>
+				</label>
+			</div>
+		</div>
+		
+		<div class="row" id="resultado">
+		
+	
+		</div>
+		
+	</div>
+	
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<script src="acoes.js"></script>
+</body>
+</html>

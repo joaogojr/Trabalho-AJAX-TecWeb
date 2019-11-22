@@ -1,0 +1,35 @@
+-- Create syntax for TABLE 'categorias'
+CREATE TABLE `categorias` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `nome` varchar(50) NOT NULL DEFAULT '',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+ 
+-- Create syntax for TABLE 'produtos'
+CREATE TABLE `produtos` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `id_cat` int(11) NOT NULL DEFAULT '0',
+  `nome` varchar(100) NOT NULL DEFAULT '',
+  `url_img` varchar(500) DEFAULT NULL,
+  `preco` decimal(3,2) DEFAULT NULL,
+  `descricao` text,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
+ 
+INSERT INTO `categorias` (`id`, `nome`)
+VALUES
+    (1, 'Eletrodomestico'),
+    (2, 'Informatica'),
+    (3, 'DVD'),
+    (4, 'Livro'),
+    (5, 'Brinquedo');
+ 
+INSERT INTO `produtos` (`id`, `id_cat`, `nome`, `url_img`, `preco`, `descricao`)
+VALUES
+    (1, 1, 'Liquidificador2', 'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTdg1RqoQ80f5WbMQx9AargoY_ukILaACL-B5jnJJXWctqbZUTw', 2.00, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis vel neque ac quam venenatis dapibus ac vel quam. Ut auctor sapien sem, non porttitor magna vestibulum vita'),
+    (4, 2, 'Notebook', 'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRO97ijkP2PRHhbrpSSqtL_LUc4YQ9ai643D4Yc-PlWy_m2kfJq', 3.00, 'rem ipsum dolor sit amet, consectetur adipiscing elit. Duis vel neque ac quam venenatis dapibus ac vel quam. Ut auctor sapien sem, non portti'),
+    (7, 3, 'DVD Mano Walter', 'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRyE50zUEl7N_dWDIwUeVPF-aM-37Fgwq_gt5fHHlNNedzz_n4V', 3.00, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.'),
+    (8, 4, 'Livro Dias Melhores', 'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRzVH5jLr3g19hj0xpRds6lgbKJo_V7QTQWpO4DjXSNfFaeYndS', 1.00, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. '),
+    (9, 5, 'Lego Ranger2', 'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTaWBI0jDHtPaSWdRgsdKhvM52GbJHSfqbwFDz8yuso4RhXs1BX', 1.00, 'Lorem ipsum dolor sit amet'),
+    (10, 5, 'Sabre de Luz', 'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQ06AtM6ogvwC11T89Ytvf0Oaxp94R496ZjY0yOgwnmt2amwmyG', 3.00, 'Um simples sabre de luz'),
+    (11, 5, 'Hot Whells', 'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTZuXvB8i64KzYTHHkSyLcbdfuCs31IPCXd6GjsMT0cNpJ5qX2W', 4.00, 'teste');
