@@ -7,22 +7,22 @@ if(!empty($_GET['acao'])){
 	//Criar conexão universal banco
 	include('config.php');
 	
-	//Listar Produtos
-	if($acao == "listar_produtos"){
+	//Listar jogos
+	if($acao == "listar_jogos"){
 		
 		if(!empty($_GET['id_cat'])){
-			$sql_produtos = "SELECT * FROM produtos WHERE id_cat=".$_GET['id_cat'].";";			
+			$sql_jogos = "SELECT * FROM jogos WHERE id_cat=".$_GET['id_cat'].";";			
 		}else{
-			$sql_produtos = "SELECT * FROM produtos;";
+			$sql_jogos = "SELECT * FROM jogos;";
 		}
 	
-		$query_produtos = mysqli_query($conexao,$sql_produtos);
+		$query_jogos = mysqli_query($conexao,$sql_jogos);
 		
-		if($query_produtos){
+		if($query_jogos){
 			
-			$produtos = [];
+			$jogos = [];
 			
-			while($dados = mysqli_fetch_array($query_produtos)){
+			while($dados = mysqli_fetch_array($query_jogos)){
 				
 				$id = $dados['id'];
 				$nome = $dados['nome'];
@@ -30,9 +30,9 @@ if(!empty($_GET['acao'])){
 				$imagem = $dados['url_img'];
 				$descricao = $dados['descricao'];
 				
-				array_push($produtos, ['id'=>$id,'nome'=>$nome, 'valor'=>$preco, 'imagem'=>$imagem, 'descricao'=>$descricao]);											
+				array_push($jogos, ['id'=>$id,'nome'=>$nome, 'valor'=>$preco, 'imagem'=>$imagem, 'descricao'=>$descricao]);											
 			}
-			echo json_encode($produtos);
+			echo json_encode($jogos);
 			
 		}else{
 			echo 0;
@@ -41,15 +41,15 @@ if(!empty($_GET['acao'])){
 		
 	}else if($acao == "inserir"){
 		
-		if(!empty($_POST['nome']) && !empty($_POST['url']) && !empty($_POST['descricao']) && !empty($_POST['preco']) && !empty($_POST['categoria'])){
+		if(!empty($_POST['nome']) && !empty($_POST['url']) && !empty($_POST['descricao']) && !empty($_POST['preco']) && !empty($_POST['genero'])){
 		
 			$nome = $_POST['nome'];
 			$url = $_POST['url'];
 			$descricao = $_POST['descricao'];
 			$preco = $_POST['preco'];
-			$categoria = $_POST['categoria'];
+			$genero = $_POST['genero'];
 			
-			$sql_inserir = "INSERT INTO produtos (id_cat, nome, url_img, preco, descricao) VALUES ($categoria,'$nome','$url',$preco,'$descricao')";
+			$sql_inserir = "INSERT INTO jogos (id_cat, nome, url_img, preco, descricao) VALUES ($genero,'$nome','$url',$preco,'$descricao')";
 			$query_inserir = mysqli_query($conexao,$sql_inserir);
 		
 			if($query_inserir){
@@ -71,7 +71,7 @@ if(!empty($_GET['acao'])){
 		
 			$id_apagar = $_GET['id'];
 			
-			$sql_apagar = "DELETE FROM produtos WHERE id=".$id_apagar.";";
+			$sql_apagar = "DELETE FROM jogos WHERE id=".$id_apagar.";";
 			$query_apagar = mysqli_query($conexao,$sql_apagar);
 		
 			if($query_apagar){
@@ -84,23 +84,23 @@ if(!empty($_GET['acao'])){
 			echo 0;
 		}
 
-	}else if($acao == "listar_categorias"){
+	}else if($acao == "listar_generos"){
 	
-		$sql_categoria = "SELECT * FROM categorias;";
-		$query_categoria = mysqli_query($conexao,$sql_categoria);
+		$sql_genero = "SELECT * FROM generos;";
+		$query_genero = mysqli_query($conexao,$sql_genero);
 		
-		if($query_categoria){
+		if($query_genero){
 			
-			$categoria = [];
+			$genero = [];
 			
-			while($dados = mysqli_fetch_array($query_categoria)){
+			while($dados = mysqli_fetch_array($query_genero)){
 				
 				$id = $dados['id'];
 				$nome = $dados['nome'];
 				
-				array_push($categoria, ['id'=>$id,'nome'=>$nome]);											
+				array_push($genero, ['id'=>$id,'nome'=>$nome]);											
 			}
-			echo json_encode($categoria);
+			echo json_encode($genero);
 			
 		}else{
 			echo 0;

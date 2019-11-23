@@ -2,8 +2,8 @@
 
 $servidor = "localhost";
 $usuario = "root";
-$senha = "root";
-$banco = "aula_php";
+$senha = "";
+$banco = "jogos";
 
 $conexao = mysqli_connect($servidor,$usuario,$senha,$banco);
 

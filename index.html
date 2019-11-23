@@ -1,73 +1,99 @@
 <!doctype html>
 <html>
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">	
-<title>Ajax Puro</title>
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">	
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<title>Ajax Puro</title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+		integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
 
 <body>
-	
-	
+
+
 	<div class="container">
-		<h2>Inserir Produto</h2>
-		<form>
 		<div class="row">
 			<div class="col-lg-4 col-sm-12">
-				<label>Nome:<input type="text" placeholder="nome do produto" name="nome" id="nome"></label>
+				<h2>Inserir Produtora</h2>
+				<label>Nome:<input type="text" placeholder="nome da produtora" name="nomeProd"
+						id="nomeProd"></label><br>
+				<label>ID:<input type="text" placeholder="idProd" name="idProd" id="idProd"></label><br>
+
+				<input type="button" onClick="enviar();" class="btn btn-primary" value="Enviar">
+				<input type="reset" class="btn btn-danger" value="Limpar">
 			</div>
 			<div class="col-lg-4 col-sm-12">
-				<label>URL Imagem:<input type="text" placeholder="url da imagem" name="url" id="url"></label>
+				<h2>Inserir Gênero</h2>
+				<label>Nome:<input type="text" placeholder="nome do genero" name="nomeGen" id="nomeGen"></label><br>
+				<label>ID:<input type="text" placeholder="idGen" name="idGen" id="idgen"></label><br>
+
+				<input type="button" onClick="enviar();" class="btn btn-primary" value="Enviar">
+				<input type="reset" class="btn btn-danger" value="Limpar">
 			</div>
 			<div class="col-lg-4 col-sm-12">
-				<label>Preço:<input type="text" placeholder="preço do produtos" name="preco" id="preco"></label>
+				<h2>Inserir Produto</h2>
+				<label>Nome:<input type="text" placeholder="nome do jogo" name="nome" id="nome"></label><br>
+				<label>Descrição:<input type="text" placeholder="descricao" name="descricao" id="descricao"></label><br>
+				<label>Preço:<input type="text" placeholder="preço do produtos" name="preco" id="preco"></label><br>
+				<label>URL Imagem:<input type="text" placeholder="url da imagem" name="url" id="url"></label><br>
+				<label>Gênero:
+					<select name="genero" id="genero">
+						<option value="0">Selecione um item</option>
+						<option value="1">RPG</option>
+						<option value="2">Terror</option>
+						<option value="3">MOBA</option>
+						<option value="4">FPS</option>
+						<option value="5">Luta</option>
+						<option value="6">Battle Royale</option>
+					</select>
+				</label><br>
+				<label>Produtora:
+					<select name="produtora" id="produtora">
+						<option value="0">Selecione um item</option>
+						<option value="1">Valve</option>
+						<option value="2">Riot</option>
+						<option value="3">Blizzard</option>
+						<option value="4">Midwat Games</option>
+						<option value="5">Epic Games</option>
+						<option value="6">Mighty Rocket Studio</option>
+					</select>
+				</label><br>
+				<input type="button" onClick="enviar();" class="btn btn-primary" value="Enviar">
+				<input type="reset" class="btn btn-danger" value="Limpar">
 			</div>
 		</div>
+		<hr>
+
 		<div class="row">
-			<div class="col-lg-6 col-sm-12">
-				<label>Descrição:<input type="text" placeholder="descricao" name="descricao" id="descricao"></label>
-			</div>
-			<div class="col-lg-6 col-sm-12">
-				<label>Categoria:
-				<select name="categoria" id="categoria">				
-					<option value="0">Selecione um item</option>
-					<option value="1">Eletrodomestico</option>
-					<option value="2">Informática</option>
-					<option value="3">DVD</option>
-					<option value="4">Livro</option>
-					<option value="5">Brinquedo</option>
-				</select>
-				</label>
-			</div>
-		</div>
-		<input type="reset" class="btn btn-danger" value="Limpar">
-		<input type="button" onClick="enviar();" class="btn btn-primary" value="Enviar">
-	</form>
-	<hr>
-		
-		<div class="row">
-			<h2>Listagem de Produto</h2>
+			<h2>Listagem de Jogos</h2>
 			<div class="col-12 pull-right" style="text-align: right;">
 				<label>Filtro:
-				<select name="filtro" id="filtro">				
-					<option value="0">Todos</option>
-				</select>
+					<select name="filtro" id="filtro">
+						<option value="0">Todos</option>
+					</select>
 				</label>
 			</div>
 		</div>
-		
-		<div class="row" id="resultado">
-		
-	
-		</div>
-		
-	</div>
-	
 
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-<script src="acoes.js"></script>
+		<div class="row" id="resultado">
+
+
+		</div>
+
+	</div>
+
+
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+		integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+		crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+		integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+		crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+		integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+		crossorigin="anonymous"></script>
+	<script src="js/acoes.js"></script>
 </body>
+
 </html>
