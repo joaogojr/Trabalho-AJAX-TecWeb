@@ -5,7 +5,7 @@ if(!empty($_GET['acao'])){
 	$acao = $_GET['acao'];
 	
 	//Criar conexão universal banco
-	include('config.php');
+	include('./config.php');
 	
 	//Listar jogos
 	if($acao == "listar_jogos"){
@@ -91,7 +91,7 @@ if(!empty($_GET['acao'])){
 			$nome = $_POST['nome'];
 			$idGen = $_POST['idGen'];
 			
-			$sql_inserirGen = "INSERT INTO generos (nome, idGen) VALUES ('$nome','$idGen')";
+			$sql_inserirGen = "INSERT INTO generos (nome, id) VALUES ('$nome','$idGen')";
 			$query_inserirGen = mysqli_query($conexao,$sql_inserirGen);
 		
 			if($query_inserirGen){
@@ -106,9 +106,26 @@ if(!empty($_GET['acao'])){
 		}else{
 			echo 0;
 		}		
-	}
+	} else if($acao == "apagarGen"){
 	
-	else if($acao == "listar_generos"){
+		if(!empty($_GET['id'])){
+		
+			$id_apagarGen = $_GET['id'];
+			
+			$sql_apagarGen = "DELETE FROM generos WHERE id=".$id_apagarGen.";";
+			$query_apagarGen = mysqli_query($conexao,$sql_apagarGen);
+		
+			if($query_apagarGen){
+				echo 1;
+			}else{
+				echo 0;
+			}
+
+		}else{
+			echo 0;
+		}
+
+	} else if($acao == "listar_generos"){
 	
 		$sql_genero = "SELECT * FROM generos;";
 		$query_genero = mysqli_query($conexao,$sql_genero);
@@ -131,7 +148,71 @@ if(!empty($_GET['acao'])){
 		}
 			
 		
-	} else{
+	} else if($acao == "listar_produtoras"){
+	
+		$sql_produtora = "SELECT * FROM produtoras;";
+		$query_produtora = mysqli_query($conexao,$sql_produtora);
+		
+		if($query_produtora){
+			
+			$produtora = [];
+			
+			while($dados = mysqli_fetch_array($query_produtora)){
+				
+				$id = $dados['id'];
+				$nome = $dados['nome'];
+				
+				array_push($produtora, ['id'=>$id,'nome'=>$nome]);											
+			}
+			echo json_encode($produtora);
+			
+		}else{
+			echo 0;
+		}
+			
+		
+	} else if($acao == "apagarProd"){
+	
+		if(!empty($_GET['id'])){
+		
+			$id_apagarProd = $_GET['id'];
+			
+			$sql_apagarProd = "DELETE FROM produtoras WHERE id=".$id_apagarProd.";";
+			$query_apagarProd = mysqli_query($conexao,$sql_apagarProd);
+		
+			if($query_apagarProd){
+				echo 1;
+			}else{
+				echo 0;
+			}
+
+		}else{
+			echo 0;
+		}
+
+	} else if ($acao == "inserirProd") {
+		if(!empty($_POST['nome']) && !empty($_POST['idProd'])){
+		
+			$nome = $_POST['nome'];
+			$idProd = $_POST['idProd'];
+			
+			$sql_inserirProd = "INSERT INTO produtoras (nome, id) VALUES ('$nome','$idProd')";
+			$query_inserirProd = mysqli_query($conexao,$sql_inserirProd);
+		
+			if($query_inserirProd){
+				
+				$id_insercao = mysqli_insert_id($conexao);
+				
+				echo $id_insercao;
+			}else{
+				echo 0;
+			}
+
+		}else{
+			echo 0;
+		}		
+	}
+	 else{
 		echo 0;
 	}
 		

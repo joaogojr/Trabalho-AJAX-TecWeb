@@ -4,74 +4,101 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	<title>Ajax Puro</title>
+	<title>Games.com</title>
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
 		integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	<link rel="stylesheet" href="css/styles.css">
 </head>
 
 <body>
 
+	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+		<a class="navbar-brand" href="index.html">Games.com</a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText"
+			aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse" id="navbarText">
+			<ul class="navbar-nav mr-auto">
+				<li class="nav-item active">
+					<a class="nav-link" href="index.html">Jogos</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="generos.html">Gêneros</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="produtoras.html">Produtoras</a>
+				</li>
+			</ul>
+			<span type="button" class="btn btn-primary navbar-text" data-toggle="modal" data-target="#exampleModal">
+				Adicionar Jogo
+			</span>
+		</div>
+	</nav>
+
+	<!-- Modal -->
+	<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+		aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">Inserir Jogo</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<form>
+						<div class="form-group">
+							<label for="exampleFormControlInput1">Nome do Jogo</label>
+							<input type="text" class="form-control" placeholder="Nome do Jogo" name="nomeJogo"
+								id="nomeJogo">
+						</div>
+						<div class="form-group">
+							<label for="exampleFormControlInput1">Descrição</label>
+							<input type="text" class="form-control" placeholder="Descricao" name="descricao"
+								id="descricao">
+						</div>
+						<div class="form-group">
+							<label for="exampleFormControlInput1">Preço</label>
+							<input type="text" class="form-control" placeholder="Preço do Jogo" name="preco" id="preco">
+						</div>
+						<div class="form-group">
+							<label for="exampleFormControlInput1">URL Imagem</label>
+							<input type="text" class="form-control" placeholder="URL da Imagem" name="url" id="url">
+						</div>
+						<div class="form-group">
+							<label for="exampleFormControlSelect1">Gênero</label>
+							<select class="form-control" name="listarGen" id="listarGen">
+								<option value="0">Selecione um Gênero</option>
+							</select>
+						</div>
+						<div class="form-group">
+							<label for="exampleFormControlSelect1">Produtora</label>
+							<select class="form-control" name="listarProd" id="listarProd">
+								<option value="0">Selecione uma Produtora</option>
+							</select>
+						</div>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+					<button type="button" onClick="enviarJogo();" class="btn btn-primary">Save changes</button>
+				</div>
+			</div>
+		</div>
+	</div>
 
 	<div class="container">
 		<div class="row">
-			<div class="col-lg-4 col-sm-12">
-				<h2>Inserir Produtora</h2>
-				<label>Nome:<input type="text" placeholder="Nome da Produtora" name="nomeProd" id="nomeProd"></label>
-				<br>
-				<label>ID:<input type="text" placeholder="ID Produtora" name="idProd" id="idProd"></label>
-				<br>
-
-				<input type="button" onClick="enviarProd();" class="btn btn-primary" value="Enviar">
-				<input type="reset" class="btn btn-danger" value="Limpar">
-			</div>
-			<div class="col-lg-4 col-sm-12">
-				<h2>Inserir Gênero</h2>
-				<label>Nome:<input type="text" placeholder="Nome do Gênero" name="nomeGen" id="nomeGen"></label>
-				<br>
-				<label>ID:<input type="text" placeholder="ID Gênero" name="idGen" id="idGen"></label>
-				<br>
-
-				<input type="button" onClick="enviarGen();" class="btn btn-primary" value="Enviar">
-				<input type="reset" class="btn btn-danger" value="Limpar">
-			</div>
-			<div class="col-lg-4 col-sm-12">
-				<h2>Inserir Jogo</h2>
-				<label>Nome:<input type="text" placeholder="Nome do Jogo" name="nomeJogo" id="nomeJogo"></label>
-				<br>
-				<label>Descrição:<input type="text" placeholder="Descricao" name="descricao" id="descricao"></label>
-				<br>
-				<label>Preço:<input type="text" placeholder="Preço do Jogo" name="preco" id="preco"></label>
-				<br>
-				<label>URL Imagem:<input type="text" placeholder="URL da Imagem" name="url" id="url"></label>
-				<br>
-				<label>Gênero:
-					<select name="listarGen" id="listarGen">
-						<option value="0">Selecione um Gênero</option>
-					</select>
-				</label>
-				<br>
-				<label>Produtora:
-					<select name="produtora" id="produtora">
-						<option value="0">Selecione um item</option>
-						<option value="1">Valve</option>
-						<option value="2">Riot</option>
-						<option value="3">Blizzard</option>
-						<option value="4">Midwat Games</option>
-						<option value="5">Epic Games</option>
-						<option value="6">Mighty Rocket Studio</option>
-					</select>
-				</label>
-				<br>
-				<input type="button" onClick="enviarJogo();" class="btn btn-primary" value="Enviar">
-				<input type="reset" class="btn btn-danger" value="Limpar">
-			</div>
-		</div>
-		<hr>
-
-		<div class="row">
-			<h2>Listagem de Jogos</h2>
+			<h1>Listagem de Jogos</h1>
 			<div class="col-12 pull-right" style="text-align: right;">
 				<label>Filtragem por gênero:
+					<select name="filtro" id="filtro">
+						<option value="0">Todos</option>
+					</select>
+				</label>
+				<label>Filtragem por Produtora:
 					<select name="filtro" id="filtro">
 						<option value="0">Todos</option>
 					</select>
@@ -79,11 +106,7 @@
 			</div>
 		</div>
 
-		<div class="row" id="resultado">
-
-
-		</div>
-
+		<div class="row" id="resultado"></div>
 	</div>
 
 
@@ -96,7 +119,7 @@
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
 		integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
 		crossorigin="anonymous"></script>
-	<script src="js/acoes.js"></script>
+	<script src="js/scriptJogos.js"></script>
 </body>
 
 </html>
