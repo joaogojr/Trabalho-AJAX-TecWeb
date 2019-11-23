@@ -16,38 +16,40 @@
 		<div class="row">
 			<div class="col-lg-4 col-sm-12">
 				<h2>Inserir Produtora</h2>
-				<label>Nome:<input type="text" placeholder="nome da produtora" name="nomeProd"
-						id="nomeProd"></label><br>
-				<label>ID:<input type="text" placeholder="idProd" name="idProd" id="idProd"></label><br>
+				<label>Nome:<input type="text" placeholder="Nome da Produtora" name="nomeProd" id="nomeProd"></label>
+				<br>
+				<label>ID:<input type="text" placeholder="ID Produtora" name="idProd" id="idProd"></label>
+				<br>
 
-				<input type="button" onClick="enviar();" class="btn btn-primary" value="Enviar">
+				<input type="button" onClick="enviarProd();" class="btn btn-primary" value="Enviar">
 				<input type="reset" class="btn btn-danger" value="Limpar">
 			</div>
 			<div class="col-lg-4 col-sm-12">
 				<h2>Inserir Gênero</h2>
-				<label>Nome:<input type="text" placeholder="nome do genero" name="nomeGen" id="nomeGen"></label><br>
-				<label>ID:<input type="text" placeholder="idGen" name="idGen" id="idgen"></label><br>
+				<label>Nome:<input type="text" placeholder="Nome do Gênero" name="nomeGen" id="nomeGen"></label>
+				<br>
+				<label>ID:<input type="text" placeholder="ID Gênero" name="idGen" id="idGen"></label>
+				<br>
 
-				<input type="button" onClick="enviar();" class="btn btn-primary" value="Enviar">
+				<input type="button" onClick="enviarGen();" class="btn btn-primary" value="Enviar">
 				<input type="reset" class="btn btn-danger" value="Limpar">
 			</div>
 			<div class="col-lg-4 col-sm-12">
 				<h2>Inserir Jogo</h2>
-				<label>Nome:<input type="text" placeholder="nome do jogo" name="nome" id="nome"></label><br>
-				<label>Descrição:<input type="text" placeholder="descricao" name="descricao" id="descricao"></label><br>
-				<label>Preço:<input type="text" placeholder="preço do produtos" name="preco" id="preco"></label><br>
-				<label>URL Imagem:<input type="text" placeholder="url da imagem" name="url" id="url"></label><br>
+				<label>Nome:<input type="text" placeholder="Nome do Jogo" name="nomeJogo" id="nomeJogo"></label>
+				<br>
+				<label>Descrição:<input type="text" placeholder="Descricao" name="descricao" id="descricao"></label>
+				<br>
+				<label>Preço:<input type="text" placeholder="Preço do Jogo" name="preco" id="preco"></label>
+				<br>
+				<label>URL Imagem:<input type="text" placeholder="URL da Imagem" name="url" id="url"></label>
+				<br>
 				<label>Gênero:
-					<select name="genero" id="genero">
-						<option value="0">Selecione um item</option>
-						<option value="1">RPG</option>
-						<option value="2">Terror</option>
-						<option value="3">MOBA</option>
-						<option value="4">FPS</option>
-						<option value="5">Luta</option>
-						<option value="6">Battle Royale</option>
+					<select name="listarGen" id="listarGen">
+						<option value="0">Selecione um Gênero</option>
 					</select>
-				</label><br>
+				</label>
+				<br>
 				<label>Produtora:
 					<select name="produtora" id="produtora">
 						<option value="0">Selecione um item</option>
@@ -58,8 +60,9 @@
 						<option value="5">Epic Games</option>
 						<option value="6">Mighty Rocket Studio</option>
 					</select>
-				</label><br>
-				<input type="button" onClick="enviar();" class="btn btn-primary" value="Enviar">
+				</label>
+				<br>
+				<input type="button" onClick="enviarJogo();" class="btn btn-primary" value="Enviar">
 				<input type="reset" class="btn btn-danger" value="Limpar">
 			</div>
 		</div>

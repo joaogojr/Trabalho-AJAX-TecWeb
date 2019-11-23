@@ -41,15 +41,16 @@ if(!empty($_GET['acao'])){
 		
 	}else if($acao == "inserir"){
 		
-		if(!empty($_POST['nome']) && !empty($_POST['url']) && !empty($_POST['descricao']) && !empty($_POST['preco']) && !empty($_POST['genero'])){
+		if(!empty($_POST['nome']) && !empty($_POST['url']) && !empty($_POST['descricao']) && !empty($_POST['preco']) && !empty($_POST['genero']) && !empty($_POST['produtora'])){
 		
 			$nome = $_POST['nome'];
 			$url = $_POST['url'];
 			$descricao = $_POST['descricao'];
 			$preco = $_POST['preco'];
 			$genero = $_POST['genero'];
+			$produtora = $_POST['produtora'];
 			
-			$sql_inserir = "INSERT INTO jogos (id_gen, nome, url_img, preco, descricao) VALUES ($genero,'$nome','$url',$preco,'$descricao')";
+			$sql_inserir = "INSERT INTO jogos (id_gen, id_prod, nome, url_img, preco, descricao) VALUES ($genero,$produtora,'$nome','$url',$preco,'$descricao')";
 			$query_inserir = mysqli_query($conexao,$sql_inserir);
 		
 			if($query_inserir){
@@ -84,7 +85,30 @@ if(!empty($_GET['acao'])){
 			echo 0;
 		}
 
-	}else if($acao == "listar_generos"){
+	} else if ($acao == "inserirGen") {
+		if(!empty($_POST['nome']) && !empty($_POST['idGen'])){
+		
+			$nome = $_POST['nome'];
+			$idGen = $_POST['idGen'];
+			
+			$sql_inserirGen = "INSERT INTO generos (nome, idGen) VALUES ('$nome','$idGen')";
+			$query_inserirGen = mysqli_query($conexao,$sql_inserirGen);
+		
+			if($query_inserirGen){
+				
+				$id_insercao = mysqli_insert_id($conexao);
+				
+				echo $id_insercao;
+			}else{
+				echo 0;
+			}
+
+		}else{
+			echo 0;
+		}		
+	}
+	
+	else if($acao == "listar_generos"){
 	
 		$sql_genero = "SELECT * FROM generos;";
 		$query_genero = mysqli_query($conexao,$sql_genero);
@@ -107,12 +131,11 @@ if(!empty($_GET['acao'])){
 		}
 			
 		
-	}else{
+	} else{
 		echo 0;
 	}
-	
-	
-}else{
+		
+} else{
 	echo 0;
 }
 

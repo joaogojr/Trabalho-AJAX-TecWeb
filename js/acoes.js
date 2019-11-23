@@ -61,6 +61,71 @@ var item_jogo = function (id, nome, valor, imagem, descricao) {
 
 }
 
+// Exibir Generos no CRUD Jogo
+
+var xhr3 = new XMLHttpRequest();
+xhr3.onreadystatechange = function () {
+	if (xhr3.readyState === 4) {
+		var dado = JSON.parse(xhr3.responseText);
+		var conteudoHTML = '<option value="0">Selecione um Gênero</option>';
+		console.log(dado);
+		for (var i = 0; i < dado.length; i++) {
+
+			conteudoHTML += '<option value="' + dado[i].id + '">' + dado[i].nome + '</option>';
+		}
+
+		document.getElementById('listarGen').innerHTML = conteudoHTML;
+	}
+};
+
+xhr3.open('GET', 'service.php?acao=listar_generos');
+xhr3.send();
+
+// Inserir Jogo
+
+function enviarJogo() {
+
+	var nome = document.getElementById('nomeJogo').value;
+	var url = document.getElementById('url').value;
+	var descricao = document.getElementById('descricao').value;
+	var preco = document.getElementById('preco').value;
+	var genero = document.getElementById('genero').value;
+	var produtora = document.getElementById('produtora').value;
+
+	if (nome == "" || url == "" || descricao == "" || preco == "" || genero == 0 || produtora == 0) {
+		alert("Todos os campos devem ser preenchidos!");
+	} else {
+
+		var http = new XMLHttpRequest();
+		var params = 'nome=' + nome + '&url=' + url + '&descricao=' + descricao + '&preco=' + preco + '&genero=' + genero + '&produtora=' + produtora + '';
+		http.open('POST', 'service.php?acao=inserir', true);
+
+		http.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+
+		http.onreadystatechange = function () {
+			if (http.readyState == 4 && http.status == 200) {
+				var dado = JSON.parse(http.responseText);
+
+				if (dado != 0) {
+
+					var conteudoHTML = item_jogo(dado, nome, preco, url, descricao);
+
+					var el = document.getElementById('resultado');
+
+					var html = el.innerHTML;
+					html += conteudoHTML
+					el.innerHTML = html;
+
+				} else {
+					alert('Erro ao inserir no servidor!');
+				}
+			}
+		}
+		http.send(params);
+	}
+}
+
+// Deletar Jogo
 
 function delete_row(e, id) {
 	var xhr = new XMLHttpRequest();
@@ -80,20 +145,16 @@ function delete_row(e, id) {
 	xhr.send();
 }
 
-function enviar() {
+function enviarGen() {
 
-	var nome = document.getElementById('nome').value;
-	var url = document.getElementById('url').value;
-	var descricao = document.getElementById('descricao').value;
-	var preco = document.getElementById('preco').value;
-	var genero = document.getElementById('genero').value;
+	var nome = document.getElementById('nomeGen').value;
+	var idGen = document.getElementById('idGen').value;
 
-	if (nome == "" || url == "" || descricao == "" || preco == "" || genero == 0) {
+	if (nome == "" || idGen == "") {
 		alert("Todos os campos devem ser preenchidos!");
 	} else {
-
 		var http = new XMLHttpRequest();
-		var params = 'nome=' + nome + '&url=' + url + '&descricao=' + descricao + '&preco=' + preco + '&genero=' + genero + '';
+		var params = 'nome=' + nome + '&idGen=' + idGen + '';
 		http.open('POST', 'service.php?acao=inserir', true);
 
 		http.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
@@ -104,7 +165,7 @@ function enviar() {
 
 				if (dado != 0) {
 
-					var conteudoHTML = item_jogo(dado, nome, preco, url, descricao);
+					var conteudoHTML = item_jogo(dado, nome, id);
 
 					var el = document.getElementById('resultado');
 
