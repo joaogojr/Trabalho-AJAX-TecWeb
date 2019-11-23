@@ -14,7 +14,7 @@ xhr.onreadystatechange = function () {
 	}
 };
 
-xhr.open('GET', 'service.php?acao=listar_jogos&id_cat=0');
+xhr.open('GET', 'service.php?acao=listar_jogos&id_gen=0');
 xhr.send();
 
 //BUSCAR generos
@@ -44,7 +44,7 @@ select_element.onchange = function () {
 	var elem = (typeof this.selectedIndex === "undefined" ? window.event.srcElement : this);
 	var value = elem.value || elem.options[elem.selectedIndex].value;
 
-	xhr.open('GET', 'service.php?acao=listar_jogos&id_cat=' + value);
+	xhr.open('GET', 'service.php?acao=listar_jogos&id_gen=' + value);
 	xhr.send();
 
 

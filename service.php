@@ -10,8 +10,8 @@ if(!empty($_GET['acao'])){
 	//Listar jogos
 	if($acao == "listar_jogos"){
 		
-		if(!empty($_GET['id_cat'])){
-			$sql_jogos = "SELECT * FROM jogos WHERE id_cat=".$_GET['id_cat'].";";			
+		if(!empty($_GET['id_gen'])){
+			$sql_jogos = "SELECT * FROM jogos WHERE id_gen=".$_GET['id_gen'].";";			
 		}else{
 			$sql_jogos = "SELECT * FROM jogos;";
 		}
@@ -49,7 +49,7 @@ if(!empty($_GET['acao'])){
 			$preco = $_POST['preco'];
 			$genero = $_POST['genero'];
 			
-			$sql_inserir = "INSERT INTO jogos (id_cat, nome, url_img, preco, descricao) VALUES ($genero,'$nome','$url',$preco,'$descricao')";
+			$sql_inserir = "INSERT INTO jogos (id_gen, nome, url_img, preco, descricao) VALUES ($genero,'$nome','$url',$preco,'$descricao')";
 			$query_inserir = mysqli_query($conexao,$sql_inserir);
 		
 			if($query_inserir){
