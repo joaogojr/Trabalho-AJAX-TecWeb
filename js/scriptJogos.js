@@ -24,37 +24,65 @@ var item_jogo = function (id, nome, valor, imagem, descricao) {
 	var html = '<div class="col-xl-3 col-lg-4 col-md-6 col-sm-12"><div class="card" style="margin:10px;"><img src="' + imagem + '" class="card-img-top" height="150"><div class="card-body" style="height:350px;"><h5 class="card-title">' + nome + '</h5><p class="card-text">' + descricao + '</p><span class="badge badge-primary">R$ ' + valor + ',00</span><br><button type="button" onClick="delete_row(this,' + id + ');" class="btn btn-block btn-danger" style="position:absolute; bottom:0px; left:0px;">Apagar</button></div></div></div>';
 
 	return html;
-
 }
 
-//BUSCAR generos
+//BUSCAR GENEROS
 
 var xhr2 = new XMLHttpRequest();
 xhr2.onreadystatechange = function () {
 	if (xhr2.readyState === 4) {
-		var dado = JSON.parse(xhr2.responseText);
+		var dadoGen = JSON.parse(xhr2.responseText);
 		var conteudoHTML = '<option value="0">Todos</option>';
-		for (var i = 0; i < dado.length; i++) {
 
-			conteudoHTML += '<option value="' + dado[i].id + '">' + dado[i].nome + '</option>';
+		for (var i = 0; i < dadoGen.length; i++) {
+			conteudoHTML += '<option value="' + dadoGen[i].id + '">' + dadoGen[i].nome + '</option>';
 		}
 
-		document.getElementById('filtro').innerHTML = conteudoHTML;
+		document.getElementById('filtroGen').innerHTML = conteudoHTML;
 	}
 };
-
 xhr2.open('GET', 'php/service.php?acao=listar_generos');
 xhr2.send();
 
-//Trocar filtro
+//BUSCAR PRODUTORAS
 
-var select_element = document.getElementById('filtro');
+var xhr5 = new XMLHttpRequest();
+xhr5.onreadystatechange = function () {
+	if (xhr5.readyState === 4) {
+		var dadoProd = JSON.parse(xhr5.responseText);
+		var conteudoHTML = '<option value="0">Todos</option>';
+		for (var i = 0; i < dadoProd.length; i++) {
+			conteudoHTML += '<option value="' + dadoProd[i].id + '">' + dadoProd[i].nome + '</option>';
+		}
 
-select_element.onchange = function () {
+		document.getElementById('filtroProd').innerHTML = conteudoHTML;
+	}
+};
+xhr5.open('GET', 'php/service.php?acao=listar_produtoras');
+xhr5.send();
+
+
+//Trocar filtros
+
+var select_element_gen = document.getElementById('filtroGen');
+
+select_element_gen.onchange = function () {
 	var elem = (typeof this.selectedIndex === "undefined" ? window.event.srcElement : this);
 	var value = elem.value || elem.options[elem.selectedIndex].value;
 
 	xhr.open('GET', 'php/service.php?acao=listar_jogos&id_gen=' + value);
+	xhr.send();
+}
+
+var select_element_prod = document.getElementById('filtroProd');
+
+select_element_prod.onchange = function () {
+	var elem2 = (typeof this.selectedIndex === "undefined" ? window.event.srcElement : this);
+	var value2 = elem2.value || elem2.options[elem2.selectedIndex].value;
+	console.log(elem2);
+	console.log(value2);
+
+	xhr.open('GET', 'php/service.php?acao=listar_jogos&id_prod=' + value2);
 	xhr.send();
 }
 
@@ -105,7 +133,7 @@ function enviarJogo() {
 	var descricao = document.getElementById('descricao').value;
 	var preco = document.getElementById('preco').value;
 	var genero = document.getElementById('listarGen').value;
-	var produtora = document.getElementById('produtora').value;
+	var produtora = document.getElementById('listarProd').value;
 
 	if (nome == "" || url == "" || descricao == "" || preco == "" || genero == 0 || produtora == 0) {
 		alert("Todos os campos devem ser preenchidos!");
@@ -143,8 +171,6 @@ function enviarJogo() {
 // Deletar Jogo
 
 function delete_row(e, id) {
-	console.log(e);
-
 	var xhr = new XMLHttpRequest();
 	xhr.onreadystatechange = function () {
 		if (xhr.readyState === 4) {
@@ -160,4 +186,26 @@ function delete_row(e, id) {
 
 	xhr.open('GET', 'php/service.php?acao=apagar&id=' + id);
 	xhr.send();
+}
+
+
+var selectedGen = document.getElementById('btnGen');
+var selectedProd = document.getElementById('btnProd');
+var filtroGen = document.getElementById('filtroGen');
+var filtroProd = document.getElementById('filtroProd');
+
+function alterarFiltro(value) {
+	if (value === 'gen') {
+		selectedGen.className = "btn btn-outline-secondary active"
+		selectedProd.className = "btn btn-outline-secondary"
+
+		filtroGen.style.display = "block"
+		filtroProd.style.display = "none"
+	} else {
+		selectedGen.className = "btn btn-outline-secondary"
+		selectedProd.className = "btn btn-outline-secondary active"
+
+		filtroGen.style.display = "none"
+		filtroProd.style.display = "block"
+	}
 }

@@ -12,7 +12,9 @@ if(!empty($_GET['acao'])){
 		
 		if(!empty($_GET['id_gen'])){
 			$sql_jogos = "SELECT * FROM jogos WHERE id_gen=".$_GET['id_gen'].";";			
-		}else{
+		} else if (!empty($_GET['id_prod'])){
+			$sql_jogos = "SELECT * FROM jogos WHERE id_prod=".$_GET['id_prod'].";";
+		} else{
 			$sql_jogos = "SELECT * FROM jogos;";
 		}
 	

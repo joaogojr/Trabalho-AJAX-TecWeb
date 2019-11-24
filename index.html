@@ -4,7 +4,7 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	<title>Games.com</title>
+	<title>Games.com - Jogos</title>
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
 		integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 	<link rel="stylesheet" href="css/styles.css">
@@ -91,19 +91,47 @@
 
 	<div class="container">
 		<div class="row">
-			<h1>Listagem de Jogos</h1>
-			<div class="col-12 pull-right" style="text-align: right;">
+			<div class="col-lg-6 col-sm-12">
+				<h1 class="top_title">Lista de Jogos</h1>
+			</div>
+			<div class="col-lg-6 col-sm-12">
+				<div id="custom_select">
+					<div class="input-group mb-3">
+						<div class="input-group-prepend">
+							<button class="btn btn-outline-secondary active" id="btnGen" onClick="alterarFiltro('gen')"
+								type="button">Gênero</button>
+						</div>
+						<div class="input-group-prepend">
+							<button class="btn btn-outline-secondary" id="btnProd" onClick="alterarFiltro()"
+								type="button">Produtora</button>
+						</div>
+						<select class="custom-select" name="filtroGen" id="filtroGen" style="display: show;">
+							<option value="0">Todos</option>
+						</select>
+						<select class="custom-select" name="filtroProd" id="filtroProd" style="display: none;">
+							<option value="0">Todos</option>
+						</select>
+					</div>
+				</div>
+			</div>
+
+
+
+
+
+
+			<!-- 			<div class="col-12 pull-right" style="text-align: right;">
 				<label>Filtragem por gênero:
-					<select name="filtro" id="filtro">
+					<select name="filtroGen" id="filtroGen">
 						<option value="0">Todos</option>
 					</select>
 				</label>
 				<label>Filtragem por Produtora:
-					<select name="filtro" id="filtro">
+					<select name="filtroProd" id="filtroProd">
 						<option value="0">Todos</option>
 					</select>
 				</label>
-			</div>
+			</div> -->
 		</div>
 
 		<div class="row" id="resultado"></div>
